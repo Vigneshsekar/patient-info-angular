@@ -33,7 +33,7 @@ export class PatientInfoComponent implements OnInit {
 
   search($event) {
     ($event.target.value.length > 1) ? this.startSearch = true : this.startSearch = false;
-    let q = $event.target.value
+    let q = $event.target.value.toLowerCase();
     this.startAt.next(q)
     this.endAt.next(q+"\uf8ff")
   }

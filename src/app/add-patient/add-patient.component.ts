@@ -40,7 +40,7 @@ export class AddPatientComponent implements OnInit {
   createPatientRecord(input) {
     this.patient.first_name = input.first_name;
     this.patient.last_name = input.last_name;
-    this.patient.name = input.first_name + ' ' + input.last_name;
+    this.patient.name = input.first_name.toLowerCase() + ' ' + input.last_name.toLowerCase();
     this.patient.dob = input.dob.toString();
     this.patient.gender = input.gender;
     this.patient.mobile = input.mobile;
