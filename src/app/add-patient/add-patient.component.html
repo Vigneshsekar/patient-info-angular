@@ -1,3 +1,98 @@
-<p>
-  add-patient works!
-</p>
+<div class="add-patient-wrapper">
+<md-toolbar>
+  <span>Admit a new patient</span>
+</md-toolbar>
+<div class="card-border">
+<md-card>
+  <md-card-content *ngIf="active">
+        <form class="patient-form" [formGroup]="patientForm" (ngSubmit)='createPatientRecord(patientForm.value)' novalidate>
+          <p>
+            <md-form-field class="margin-right">
+                <input mdInput
+                required
+                formControlName="first_name"
+                placeholder="First name">
+                <md-error *ngIf="patientForm.controls['first_name'].hasError('pattern')">
+                  Oh! How do we call you? Use alphabets, Please.
+                </md-error>
+                <md-error *ngIf="patientForm.controls['first_name'].hasError('required')">
+                  We need your name, Please!
+                </md-error>
+                <md-error *ngIf="patientForm.controls['first_name'].hasError('minlength')">
+                  Your name is too short to address.
+                </md-error>
+            </md-form-field>
+            
+            <md-form-field class="">
+              <input mdInput 
+              formControlName="last_name"
+              placeholder="Last name">
+            </md-form-field>
+          </p>
+
+          <p>
+          
+          <md-form-field class="margin-right">
+            <input 
+            formControlName="dob"
+            required
+            mdInput [min]="minDate" [max]="maxDate" [mdDatepicker]="picker" readonly="readonly" placeholder="Choose a date" (dateInput)="onInput($event)" (dateChange)="onChange($event)" >
+            <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+            <md-datepicker #picker startView="year" [startAt]="startDate"></md-datepicker>
+            <md-error *ngIf="patientForm.controls['dob'].hasError('required')">
+              Use the picker to select your DoB.
+            </md-error>
+          </md-form-field>
+
+          <md-form-field class="">
+              <input mdInput 
+              [(ngModel)]="patient.age"
+              [ngModelOptions]="{standalone: true}"
+              disabled placeholder="Age">
+          </md-form-field>
+          </p>
+
+          <p>
+          <md-select 
+          formControlName="gender"
+          required
+          placeholder="Gender" class="dropdown margin-right">
+              <md-option *ngFor="let gender of genders" [value] = "gender">
+                {{ gender }}
+              </md-option>
+          </md-select>
+
+          <md-form-field class="">
+              <span mdPrefix>+91 &nbsp;</span>
+              
+              <input
+              formControlName="mobile"
+              required
+              type="tel" maxlength="10" #mobileNumber mdInput placeholder="Mobile">
+              <md-hint align="end">{{mobileNumber.value.length}} / 10</md-hint>
+              <md-error *ngIf="patientForm.dirty && patientForm.controls['mobile'].hasError('pattern')">
+                Oh! Sorry. Our dialers have only numbers in it.
+              </md-error>
+              <md-error *ngIf="patientForm.dirty &&  patientForm.controls['mobile'].hasError('required')">
+                Mobile number is required
+              </md-error>
+              <md-error *ngIf="patientForm.dirty && patientForm.controls['mobile'].hasError('minlength')">
+                Usually, Mobile numbers have 10 digits.
+              </md-error>
+          </md-form-field>
+          </p>
+
+          <p>
+            <md-form-field class=" textarea margin-right">
+              <textarea mdInput 
+              formControlName="other_note"
+              placeholder="Other"></textarea>
+            </md-form-field>
+          </p>
+          <button color="primary" type="submit" [disabled]="!patientForm.valid" md-button>Submit</button>          
+        </form>        
+        
+  </md-card-content>
+</md-card>
+</div>
+</div>
