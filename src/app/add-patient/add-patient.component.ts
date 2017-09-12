@@ -28,7 +28,7 @@ export class AddPatientComponent implements OnInit {
   }
   createForm() {
     this.patientForm = new FormGroup({
-      'first_name': new FormControl(this.patient.first_name, Validators.compose([Validators.required, Validators.minLength(3), Validators.pattern(/^[A-Za-z]+$/)])),
+      'first_name': new FormControl(this.patient.first_name, Validators.compose([Validators.required, Validators.minLength(3), Validators.pattern(/^[\sa-zA-Z]+$/)])),
       'last_name': new FormControl(this.patient.last_name),
       'dob': new FormControl(this.patient.dob, [Validators.required]),
       'gender': new FormControl(this.patient.gender, [Validators.required]),

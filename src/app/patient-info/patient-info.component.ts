@@ -19,7 +19,6 @@ export class PatientInfoComponent implements OnInit {
   searchRecords;
   startAt = new Subject()
   endAt = new Subject()
-  lastKeypress: number = 0;
   startSearch: boolean = false;
 
   constructor(private patientDataService: PatientDataService) {
@@ -34,11 +33,8 @@ export class PatientInfoComponent implements OnInit {
 
   search($event) {
     ($event.target.value.length > 1) ? this.startSearch = true : this.startSearch = false;
-    if ($event.timeStamp - this.lastKeypress > 200) {
-      let q = $event.target.value
-      this.startAt.next(q)
-      this.endAt.next(q+"\uf8ff")
-    }
-    this.lastKeypress = $event.timeStamp
+    let q = $event.target.value
+    this.startAt.next(q)
+    this.endAt.next(q+"\uf8ff")
   }
 }
