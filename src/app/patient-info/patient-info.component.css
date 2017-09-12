@@ -1,0 +1,53 @@
+.patient-card {
+  width: 400px;
+  margin: 30px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.avatar {
+  background: grey;
+}
+
+.icon-record {
+  color: white;
+}
+
+.align-center{
+  margin-left: 8px;
+  margin-top: 8px;
+}
+
+.card-footer{
+  margin: auto;
+  display: flex;
+}
+
+.align-cards {
+  margin: auto;
+  display: flex;
+  overflow: auto;
+}
+
+.mat-form-field {
+  position: relative;
+  text-align: center;
+}
+
+.search-results {
+  padding-top: 10px;
+  margin: auto;
+  display: table;
+}
+
+md-card-content{
+  height: 75px;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+md-card-content p {
+  text-align: center
+}

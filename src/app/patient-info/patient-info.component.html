@@ -1,0 +1,63 @@
+
+<!-- The following code is not DRY. -->
+
+<div class="align-cards">
+<div *ngFor="let patient of patients | async">
+<md-card class="patient-card">
+    <md-card-header>
+      <div md-card-avatar class="avatar">
+        <md-icon class=" align-center icon-record">my_library_books</md-icon>
+      </div>
+      <md-card-title>{{patient.name}}</md-card-title>
+      <md-card-subtitle>{{patient.gender}} ( {{patient.age}} )</md-card-subtitle>
+    </md-card-header>
+    <md-card-content style="height: 75px">
+      <p>
+        {{patient.other_note}}
+      </p>
+    </md-card-content>
+    <md-card-actions class="card-footer">
+      <span class="spacer"></span>
+      <span><md-icon class="">phone</md-icon>
+      </span>
+      <span> +91 - {{patient.mobile}} </span>
+      <span class="spacer"></span>
+    </md-card-actions>
+  </md-card>
+</div>
+</div>
+
+<md-form-field style="width: 600px; padding-top: 10px; margin: auto; display: block;">
+    <input mdInput type="text" (keydown)="search($event)" placeholder="Search directory by name">
+</md-form-field>
+<div  class="search-results">
+<div *ngFor="let patient of searchRecords">
+  <md-card style="margin-bottom: 30px;">
+      <md-card-header>
+        <div md-card-avatar class="avatar">
+          <md-icon class=" align-center icon-record">my_library_books</md-icon>
+        </div>
+        <md-card-title>{{patient.name}}</md-card-title>
+        <md-card-subtitle>{{patient.gender}} ( {{patient.age}} )</md-card-subtitle>
+      </md-card-header>
+      <md-card-content style="height: 75px">
+        <p>
+          {{patient.other_note}}
+        </p>
+      </md-card-content>
+      <md-card-actions class="card-footer">
+        <span class="spacer"></span>
+        <span><md-icon class="">phone</md-icon>
+        </span>
+        <span> +91 - {{patient.mobile}} </span>
+        <span class="spacer"></span>
+      </md-card-actions>
+    </md-card>
+  </div>
+
+  <div *ngIf="searchRecords?.length < 1 && startSearch">
+    <p>
+      No record found matching the given name.
+    </p>
+  </div>
+</div>
