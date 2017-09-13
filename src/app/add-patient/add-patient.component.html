@@ -27,6 +27,9 @@
               <input mdInput 
               formControlName="last_name"
               placeholder="Last name">
+              <md-error *ngIf="patientForm.controls['last_name'].hasError('pattern')">
+                Oh! How do we call you then? Only alphabets, Please.
+              </md-error>
             </md-form-field>
           </p>
 
